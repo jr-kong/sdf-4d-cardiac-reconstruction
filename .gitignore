@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+.vizenv/
+
+# OS / editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Local experiment outputs and caches
+runs/
+results/
+results_figures/
+results_visualisations/
+experiments/
+
+# Large data artifacts
+data/
+datasets/
+EchoNet-Dynamic/
+sdf_outputs/
+*.npy
+*.npz
+*.h5
+*.weights.h5
+*.index
+*.data-00000-of-00001
+*.avi
+*.ply
+*.vtk
+*.vtp
+*.gz
+*.zip
+*.tar
+*.tar.gz
+

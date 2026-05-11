@@ -1,0 +1,168 @@
+loaded_models:
+  echo:
+    experiment: 20251207-002012
+    model_nb: 0
+  sdf_ae:
+    experiment: 20260322-201228
+  sdf_ef_pred:
+    experiment: full_ef_biplane
+
+data_echo:
+  batch_size: 512
+  limit_train: null
+  limit_val: null
+
+data_sdf:
+  batch_size: 512
+  data_root: /home/svu/e0957732/4DHeartModel/sdf_outputs/SDF_GLOBAL_FULL
+  mesh_generated_root: /home/svu/e0957732/4DHeartModel/experiments/CONRADData_DHB/generated/rkrpth
+  ef_key: EF_Biplane
+  encode_batch_size: 8
+  limit_train: null
+  limit_val: null
+
+training:
+  patience: 10
+  max_patience: 150
+  decay_rate: 0.99
+
+  num_steps_alternate_train: 2
+  num_steps_summaries: 125
+  num_steps_val: 50
+  step_disc_train_start: 10000
+  max_steps: 100000
+
+  optimizers:
+    sdf_gen:
+      learning_rate: 0.0002
+      beta_1: 0.5
+      beta_2: 0.99
+    echo_gen:
+      learning_rate: 0.0002
+      beta_1: 0.5
+      beta_2: 0.99
+    sdf_disc:
+      learning_rate: 0.0002
+      beta_1: 0.5
+      beta_2: 0.99
+    echo_disc:
+      learning_rate: 0.0002
+      beta_1: 0.5
+      beta_2: 0.99
+
+  cycle_loss_lambda: 10
+  cycle_loss_str: l1
+  ef_loss_lambda: 10
+  ef_loss_str: l1
+
+model:
+  latent_space_echo_dim: 128
+  latent_space_sdf_dim: 128
+
+  sdf_gen:
+    dense_layers:
+      - name: dense1
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 512
+        use_bias: true
+        batch_norm: false
+      - name: dense2
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 1024
+        use_bias: true
+        batch_norm: false
+      - name: dense3
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 1024
+        use_bias: true
+        batch_norm: false
+      - name: dense4
+        activation:
+          name: linear
+          alpha: 0.2
+        units: 128
+        use_bias: true
+        batch_norm: false
+
+  echo_gen:
+    dense_layers:
+      - name: dense1
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 512
+        use_bias: true
+        batch_norm: false
+      - name: dense2
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 1024
+        use_bias: true
+        batch_norm: false
+      - name: dense3
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 1024
+        use_bias: true
+        batch_norm: false
+      - name: dense4
+        activation:
+          name: linear
+          alpha: 0.2
+        units: 128
+        use_bias: true
+        batch_norm: false
+
+  sdf_disc:
+    dense_layers:
+      - name: dense1
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 512
+        use_bias: true
+        batch_norm: false
+      - name: dense2
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 1024
+        use_bias: true
+        batch_norm: false
+      - name: dense3
+        activation:
+          name: linear
+        units: 1
+        use_bias: true
+        batch_norm: false
+
+  echo_disc:
+    dense_layers:
+      - name: dense1
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 512
+        use_bias: true
+        batch_norm: false
+      - name: dense2
+        activation:
+          name: relu
+          alpha: 0.2
+        units: 1024
+        use_bias: true
+        batch_norm: false
+      - name: dense3
+        activation:
+          name: linear
+        units: 1
+        use_bias: true
+        batch_norm: false
