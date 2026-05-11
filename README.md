@@ -64,7 +64,7 @@ The overall SDF branch follows this flow:
 
 ```text
 mesh video NPZ
-  -> component-wise SDF video
+  -> preprocessed to SDF video
   -> global multichannel SDF tensor
   -> SDF autoencoder latent
   -> SDF EF predictor / SDF-compatible latent CycleGAN
@@ -85,7 +85,6 @@ mesh video NPZ
 - **SDF-compatible CycleGAN**
   - The CycleGAN adapts the original latent translation setup from `echo latent <-> mesh latent` to `echo latent <-> SDF latent`.
   - In this version, generated SDF latents can be decoded by the frozen SDF autoencoder and supervised with the frozen SDF EF predictor.
-  - This component depends most strongly on the inherited project structure and is included as a curated SDF adaptation rather than a fully standalone training pipeline.
 
 ## Environment
 
